@@ -22,8 +22,9 @@
     </v-app-bar>
 
     <v-main>
-      <div>
-        <router-link to="/admin">Admin</router-link>
+      <div class="nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/login">Login</router-link>
       </div>
       <router-view />
     </v-main>
@@ -35,7 +36,7 @@
 export default {
   name: 'App',
 
-  components: {
+  methods: {
 
   },
 
@@ -44,3 +45,11 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+
+.nav {
+  margin: auto;
+  width: 50%;
+}
+</style>
