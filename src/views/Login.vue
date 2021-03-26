@@ -25,6 +25,9 @@
 
 <script>
 import firebase from 'firebase';
+import '@firebase/auth';
+
+// import { db } from '../db';
 
 export default {
   name: "Login",
@@ -39,7 +42,6 @@ export default {
           .catch((error) => {
             const errorCode = error.code;
             console.log(errorCode);
-            // const errorMessage = error.message;
           });
     },
 

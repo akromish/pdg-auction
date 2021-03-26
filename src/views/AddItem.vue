@@ -22,12 +22,21 @@
 </template>
 
 <script>
+// import { db } from '../db';
+import { firebase } from '@firebase/app';
+import '@firebase/firestore'
 export default {
   name: "AddItem",
   methods: {
-    pressed(){
-      alert("Item not really added lol");
-      this.$router.replace({name: 'Admin'});
+    async pressed(){
+      const res = await firebase.collection('items').add({
+        name: 'Tokyo',
+        country: 'Japan'
+      });
+
+      console.log('Added document with ID: ', res.id);
+
+      await this.$router.replace({name: 'Admin'});
     }
   },
   data() {
