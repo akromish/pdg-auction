@@ -1,48 +1,41 @@
 <template>
-  <v-app>
+  <v-app
+      style="background: #143344"
+  >
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="#e0d9ce"
     >
       <div class="d-flex align-center">
-        <v-img
-          alt="PDG Logo"
-          class="shrink mr-2"
-          contain
-          src="@/assets/pdg_logo.jpg"
-          transition="scale-transition"
-          width="80"
-        />
-
+        <router-link to="/">
+          <v-img
+              alt="PDG Logo"
+              class="shrink mr-2"
+              contain
+              src="@/assets/pdg_logo.jpg"
+              transition="scale-transition"
+              width="80"
+          />
+        </router-link>
       </div>
-
-      <v-spacer></v-spacer>
 
     </v-app-bar>
 
-    <v-main>
+    <v-main
+        color="#e0d9ce"
+    >
+      <router-view />
       <div class="nav">
-        <router-link to="/">Home</router-link> |
         <router-link to="/login">Login</router-link>
       </div>
-      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-
 export default {
   name: 'App',
 
-  methods: {
-
-  },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
 

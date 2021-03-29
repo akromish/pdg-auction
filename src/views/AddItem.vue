@@ -12,8 +12,14 @@
             v-model="description"
         ></v-textarea>
         <v-text-field
+            type="number"
             label="starting price"
             v-model="startingPrice"
+        ></v-text-field>
+        <v-text-field
+            type="number"
+            label="increment"
+            v-model="increment"
         ></v-text-field>
         <v-btn @click="pressed">Add Item</v-btn>
       </v-form>
@@ -22,28 +28,31 @@
 </template>
 
 <script>
-// import { db } from '../db';
-import { firebase } from '@firebase/app';
-import '@firebase/firestore'
+import { db } from '../db';
+
 export default {
   name: "AddItem",
   methods: {
-    async pressed(){
-      const res = await firebase.collection('items').add({
-        name: 'Tokyo',
-        country: 'Japan'
-      });
+    pressed(){
+      db.collection("items").add({
+        name: this.name,
+        description: this.description,
+        startingPrice: this.startingPrice,
+        increment: this.increment,
+        currentPrice: this.startingPrice,
+        bid: false
+      })
+      this.$router.replace({name: 'Admin'});
 
-      console.log('Added document with ID: ', res.id);
-
-      await this.$router.replace({name: 'Admin'});
     }
   },
   data() {
     return {
       name: '',
       description: '',
-      startingPrice: '',
+      startingPrice: 0,
+      increment: 0,
+      currentPrice: 0,
     }
   }
 }

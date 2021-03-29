@@ -1,12 +1,22 @@
-// Conveniently import this file anywhere to use db
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
-// Get a Firestore instance
-export const db = firebase
-    .initializeApp({ projectId: 'pdg-app-f75fb' })
-    .firestore()
+const firebaseConfig = {
+    apiKey: "AIzaSyAkV1GJZ3my2QYGwCd9vRMFU4NGoTvcuB0",
+    authDomain: "pdg-app-f75fb.firebaseapp.com",
+    databaseURL: "https://pdg-app-f75fb-default-rtdb.firebaseio.com",
+    projectId: "pdg-app-f75fb",
+    storageBucket: "pdg-app-f75fb.appspot.com",
+    messagingSenderId: "1090019154090",
+    appId: "1:1090019154090:web:33dc43ba980556d41798d3",
+    measurementId: "G-DXKSTB41FK"
+};
 
-// Export types that exists in Firestore - Uncomment if you need them in your app
-// const { Timestamp, GeoPoint } = firebase.firestore
-// export { Timestamp, GeoPoint }
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+// db.firebase.analytics();
+
+export { db };
+
