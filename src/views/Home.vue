@@ -10,12 +10,17 @@
                   src="@/assets/temp-img.jpg"
               />
             </v-responsive>
-            <v-card-title class="justify-center">
+            <v-card-title>
               <div>{{ item.name }}</div>
             </v-card-title>
             <v-card-text class="justify-center">
-              <div>{{ item.description }}</div>
+              <div class="my-2">{{ item.description }}</div>
+              <v-divider class="mx-4"></v-divider>
+              <div class="price my-2 py-3">Current Price: {{ item.currentPrice }}</div>
             </v-card-text>
+            <v-card-actions>
+              <PopUp/>
+            </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
@@ -24,10 +29,14 @@
 </template>
 
 <script>
-import { db } from '../db';
+import { db } from '@/db';
+import PopUp from "@/components/PopUp";
 
 export default {
   name: 'Home',
+  components: {
+    PopUp,
+  },
   data() {
     return {
       items: [],
@@ -46,7 +55,13 @@ export default {
 </script>
 
 <style scoped>
-.rounded-card{
+.rounded-card {
   border-radius:10px;
+}
+.price {
+  /*background-color: ghostwhite;*/
+  text-align: center;
+  border-radius:10px;
+  font-weight: bold;
 }
 </style>
