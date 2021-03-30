@@ -10,11 +10,11 @@
         <router-link to="/">
           <v-img
               alt="PDG Logo"
-              class="shrink mr-2"
+              class="mt-3"
               contain
-              src="@/assets/pdg_logo.jpg"
+              src="@/assets/pdg_new_m.jpg"
               transition="scale-transition"
-              width="80"
+              width="70"
           />
         </router-link>
       </div>

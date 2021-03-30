@@ -2,11 +2,12 @@
   <v-dialog transition="dialog-bottom-transition" max-width="600">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
+          class="text-right"
           color="primary"
           v-bind="attrs"
           v-on="on"
           flat
-      >Bid on Item</v-btn>
+      >Bid</v-btn>
     </template>
     <template v-slot:default="dialog">
       <v-card>

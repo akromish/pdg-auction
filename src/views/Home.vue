@@ -3,10 +3,10 @@
     <v-container class="my-5">
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="item in items" :key="item.name">
-          <v-card flat class="my-3 mx-6 justify-center rounded-lg" color="#fffff2">
-            <v-responsive class="pt-4 justify-center">
+          <v-card flat class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
+            <v-responsive class="">
               <v-img
-                  height="175"
+                  height="200"
                   src="@/assets/temp-img.jpg"
               />
             </v-responsive>
@@ -14,12 +14,14 @@
               <div>{{ item.name }}</div>
             </v-card-title>
             <v-card-text class="justify-center">
-              <div class="my-2">{{ item.description }}</div>
-              <v-divider class="mx-4"></v-divider>
-              <div class="price my-2 py-3">Current Price: {{ item.currentPrice }}</div>
+              <div class="mb-2 mt-1 subtitle-1">{{ item.description }}</div>
+              <v-divider class="ma-3"></v-divider>
             </v-card-text>
             <v-card-actions>
-              <PopUp/>
+             <v-row>
+               <div class="my-2 pa-2">{{ item.currentBidder }} ${{ item.currentPrice }}</div>
+               <PopUp/>
+             </v-row>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -58,13 +60,13 @@ export default {
 </script>
 
 <style scoped>
-.rounded-card {
-  border-radius:10px;
-}
-.price {
-  /*background-color: ghostwhite;*/
-  text-align: center;
-  border-radius:10px;
-  font-weight: bold;
-}
+/*.rounded-card {*/
+/*  border-radius:10px;*/
+/*}*/
+/*.price {*/
+/*  !*background-color: ghostwhite;*!*/
+/*  text-align: center;*/
+/*  border-radius:10px;*/
+/*  font-weight: bold;*/
+/*}*/
 </style>

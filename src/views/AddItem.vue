@@ -41,7 +41,7 @@ export default {
         description: this.description,
         increment: this.increment,
         currentPrice: this.startingPrice,
-        currentBidder: "",
+        currentBidder: "No Bids Yet!",
         bid: false
       })
       this.$router.replace({name: 'Admin'});
