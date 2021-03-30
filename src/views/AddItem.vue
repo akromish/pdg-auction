@@ -1,7 +1,9 @@
 <template>
-  <div class="adding">
-    Adding Item
-    <v-app>
+  <div>
+    <div class="text-center mx-2 my-4">
+      <h1>Adding Item</h1>
+    </div>
+    <v-app class="px-2 my-3 mx-6">
       <v-form>
         <v-text-field
           label="name"
@@ -28,7 +30,7 @@
 </template>
 
 <script>
-import { db } from '../db';
+import { db } from '@/db';
 
 export default {
   name: "AddItem",
@@ -37,9 +39,9 @@ export default {
       db.collection("items").add({
         name: this.name,
         description: this.description,
-        startingPrice: this.startingPrice,
         increment: this.increment,
         currentPrice: this.startingPrice,
+        currentBidder: "",
         bid: false
       })
       this.$router.replace({name: 'Admin'});
@@ -59,9 +61,9 @@ export default {
 </script>
 
 <style scoped>
-.adding {
-  margin: auto;
-  margin-top: 30px;
-  width: 50%;
-}
+/*.adding {*/
+/*  margin: auto;*/
+/*  margin-top: 30px;*/
+/*  width: 50%;*/
+/*}*/
 </style>

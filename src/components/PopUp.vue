@@ -1,18 +1,11 @@
 <template>
   <v-dialog transition="dialog-bottom-transition" max-width="600">
-<!--    <v-btn flat slot="activator">-->
-<!--      Bid-->
-<!--    </v-btn>-->
-<!--    <v-card>-->
-<!--      <v-card-title>-->
-<!--        Complete your bid:-->
-<!--      </v-card-title>-->
-<!--    </v-card>-->
     <template v-slot:activator="{ on, attrs }">
       <v-btn
           color="primary"
           v-bind="attrs"
           v-on="on"
+          flat
       >Bid on Item</v-btn>
     </template>
     <template v-slot:default="dialog">
