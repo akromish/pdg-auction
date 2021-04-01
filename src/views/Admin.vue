@@ -14,6 +14,7 @@
 <script>
   export default {
   name: "Admin",
+  title: "Shumail's Page",
   methods: {
     pressed() {
       console.log("sign out");

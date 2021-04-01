@@ -2,6 +2,7 @@
   <v-app
       style="background: #143344"
   >
+    <title>PD Silent Auction</title>
     <v-app-bar
       app
       color="#e0d9ce"

@@ -28,6 +28,7 @@ import { db } from '../db';
 
 export default {
   name: 'Home',
+  title: 'PDG Silent Auction',
   data() {
     return {
       items: [],

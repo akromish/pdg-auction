@@ -24,10 +24,11 @@
 </template>
 
 <script>
-import { db } from '../db';
+import { db } from '@/db';
 
 export default {
   name: "Login",
+  title: "Login",
   methods: {
     pressed() {
       const auth = db.auth();
