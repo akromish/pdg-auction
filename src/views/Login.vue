@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import { db } from '@/db';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default {
   name: "Login",
   title: "Login",
   methods: {
     pressed() {
-      const auth = db.auth();
-      auth.signInWithEmailAndPassword(this.email, this.password)
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);

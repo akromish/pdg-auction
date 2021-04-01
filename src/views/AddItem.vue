@@ -16,12 +16,7 @@
         <v-text-field
             type="number"
             label="starting price"
-            v-model="startingPrice"
-        ></v-text-field>
-        <v-text-field
-            type="number"
-            label="increment"
-            v-model="increment"
+            v-model="currentPrice"
         ></v-text-field>
         <v-btn @click="pressed">Add Item</v-btn>
       </v-form>
@@ -40,8 +35,7 @@ export default {
       db.collection("items").add({
         name: this.name,
         description: this.description,
-        increment: this.increment,
-        currentPrice: this.startingPrice,
+        currentPrice: this.currentPrice,
         currentBidder: "No Bids Yet!",
         bid: false
       })
@@ -53,8 +47,6 @@ export default {
     return {
       name: '',
       description: '',
-      startingPrice: 0,
-      increment: 0,
       currentPrice: 0,
     }
   }
