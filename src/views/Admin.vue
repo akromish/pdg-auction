@@ -44,7 +44,6 @@
     db.collection("items").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.items.push(doc.data());
-        console.log("howdy");
         //should I also store doc.id?
       });
     });

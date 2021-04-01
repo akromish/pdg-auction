@@ -18,18 +18,25 @@
         </v-card-text>
         <v-card-actions>
           <v-form>
+<!--            need to add some sort of form validation-->
             <v-text-field
                 label="name"
                 v-model="name"
+                :rules="inputRules"
+                required
             ></v-text-field>
             <v-text-field
                 type="number"
                 label="price (min $1 increment)"
-                v-model="bidPrice"
+                v-model.number="bidPrice"
+                :rules="bidRules"
+                required
             ></v-text-field>
             <v-text-field
                 label="phone number"
                 v-model="phoneNumber"
+                :rules="phoneRules"
+                required
             ></v-text-field>
           </v-form>
         </v-card-actions>
@@ -57,20 +64,16 @@ export default {
   name: "PopUp",
   methods: {
     bid () {
-      if(this.bidPrice>=this.bidMin) {
-        db.collection("bids").add({
-          name: this.name,
-          bidPrice: this.bidPrice,
-          phoneNumber: this.phoneNumber,
-          item: this.documentId,
-          itemName: this.itemName
-        })
-        // this.dialog = false
-        this.$emit('close-dialog');
-      } else {
-        console.log('Price too low')
-        console.log(this.bidMin)
-      }
+      db.collection("bids").add({
+        name: this.name,
+        bidPrice: this.bidPrice,
+        phoneNumber: this.phoneNumber,
+        itemName: this.itemName
+      })
+      db.collection("items").doc(this.itemName).update({
+        currentPrice: this.bidPrice,
+        currentBidder: this.name,
+      })
     },
   },
   props: {
@@ -82,9 +85,18 @@ export default {
   data() {
     return {
       name: '',
-      bidPrice: 0,
       phoneNumber: '',
-      bidMin: this.bidPrice++,
+      bidMin: this.currentPrice + 1,
+      bidPrice: this.bidMin,
+      inputRules: [
+        v => v.length >=3 || 'please enter your full name',
+      ],
+      bidRules: [
+        v => v >= this.bidMin || `minimum bid: $${this.bidMin}`,
+      ],
+      phoneRules: [
+        v => v.length >=9 || 'please enter your phone number',
+      ]
     }
   },
 }

@@ -62,7 +62,6 @@ export default {
     db.collection("items").orderBy("name").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.items.push(doc.data());
-        //should I also store doc.id?
       });
     });
   }

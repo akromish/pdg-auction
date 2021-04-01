@@ -8,6 +8,8 @@
         <v-text-field
           label="name"
           v-model="name"
+          :rules="inputRules"
+          required
         ></v-text-field>
         <v-textarea
             label="description"
@@ -16,7 +18,7 @@
         <v-text-field
             type="number"
             label="starting price"
-            v-model="currentPrice"
+            v-model.number="currentPrice"
         ></v-text-field>
         <v-btn @click="pressed">Add Item</v-btn>
       </v-form>
@@ -32,12 +34,11 @@ export default {
   title: "Add Item",
   methods: {
     pressed(){
-      db.collection("items").add({
+      db.collection("items").doc(this.name).set({
         name: this.name,
         description: this.description,
         currentPrice: this.currentPrice,
         currentBidder: "No Bids Yet!",
-        bid: false
       })
       this.$router.replace({name: 'Admin'});
 
@@ -48,6 +49,9 @@ export default {
       name: '',
       description: '',
       currentPrice: 0,
+      inputRules: [
+          v => v.length >=3 || 'please enter your full name'
+      ]
     }
   }
 }
