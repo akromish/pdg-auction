@@ -1,7 +1,9 @@
 <template>
   <div class="log">
-    Login
-    <v-app>
+    <div class="text-center mx-2 my-4">
+      <h1>Login</h1>
+    </div>
+    <v-app class="px-2 my-3 mx-6">
       <v-form>
         <v-text-field
           label="email"
@@ -57,11 +59,5 @@ export default {
 </script>
 
 <style scoped>
-.log {
-  margin: auto;
-  margin-top: 20px;
-  width: 40%;
-}
-
 
 </style>
