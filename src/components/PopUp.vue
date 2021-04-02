@@ -2,15 +2,16 @@
   <v-dialog transition="dialog-bottom-transition" max-width="600">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-          color="primary"
+          color="#7b1443"
           v-bind="attrs"
           v-on="on"
+          class="white--text"
       >Bid</v-btn>
     </template>
     <template v-slot:default="dialog">
       <v-card>
         <v-toolbar
-            color="primary"
+            color="#143344"
             dark
         >{{ itemName }}</v-toolbar>
         <v-card-text>
@@ -48,7 +49,8 @@
           <v-col class="text-right">
             <v-btn
                 @click="bid(); dialog.value = false"
-            >Submit Bid</v-btn>
+                color="#7b1443"
+            ><div class="white--text">Submit Bid</div></v-btn>
           </v-col>
         </v-card-actions>
       </v-card>
@@ -73,6 +75,7 @@ export default {
         db.collection("items").doc(this.itemName).update({
           currentPrice: this.bidPrice,
           currentBidder: this.name,
+          phoneNumber: this.phoneNumber,
         })
         this.$emit('changeStuff', 'hmmm');
       }

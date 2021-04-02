@@ -38,7 +38,7 @@
       </v-layout>
     </v-container>
     <div class="text-center ma-4">
-      <router-link to="/login"><h3>Admin</h3></router-link>
+      <router-link to="/login"><h5>Admin</h5></router-link>
     </div>
   </div>
 </template>

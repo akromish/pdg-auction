@@ -3,7 +3,7 @@
     <div class="text-center mx-2 my-4">
       <h1>Adding Item</h1>
     </div>
-    <v-app class="px-2 my-3 mx-6">
+    <div class="px-2 my-3 mx-6">
       <v-form ref="form">
         <v-text-field
           label="name"
@@ -23,14 +23,14 @@
             v-model.number="currentPrice"
             required
         ></v-text-field>
-        <v-card-actions>
-          <label>File
-            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-          </label>
-        </v-card-actions>
-        <v-btn @click="pressed">Add Item</v-btn>
+        <label>
+          <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+        </label>
+        <div class="text-center mt-12 mb-4">
+          <v-btn @click="pressed">Add Item</v-btn>
+        </div>
       </v-form>
-    </v-app>
+    </div>
   </div>
 </template>
 
@@ -56,7 +56,8 @@ export default {
                   name: this.name,
                   description: this.description,
                   currentPrice: this.currentPrice,
-                  currentBidder: "No Bids Yet!",
+                  currentBidder: this.currentBidder,
+                  phoneNumber: this.phoneNumber,
                   imageUrl: this.imageUrl,
                 })
               })
@@ -73,6 +74,8 @@ export default {
       name: '',
       description: '',
       currentPrice: 0,
+      currentBidder: 'No Bids Yet!',
+      phoneNumber: 0,
       file: '',
       imageUrl: '@/assets/pdg_logo.jpg',
       inputRules: [

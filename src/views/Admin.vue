@@ -9,19 +9,12 @@
         :items="items"
         :items-per-page="10"
     ></v-data-table>
-<!--    <table>-->
-<!--      <tr>-->
-<!--        <td>{{ items.name }}</td>-->
-<!--        <td>{{ items.description }}</td>-->
-<!--      </tr>-->
-<!--    </table>-->
   </div>
 </template>
 
 <script>
-  import {db} from "@/db";
-
-  export default {
+import {db} from "@/db";
+export default {
   name: "Admin",
   title: "Shumail's Page",
   methods: {
@@ -33,9 +26,6 @@
     return {
       headers: [
         { text: 'Item', value: 'name' },
-        { text: 'Description', value: 'text' },
-        { text: 'Current Price', value: 'dollars' },
-        { text: 'Current Bidder', value: 'person' }
       ],
       items: [],
     }
@@ -44,7 +34,6 @@
     db.collection("items").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.items.push(doc.data());
-        //should I also store doc.id?
       });
     });
   }

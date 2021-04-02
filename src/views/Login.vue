@@ -1,27 +1,25 @@
 <template>
-  <div class="log">
+  <div class="px-2 my-3 mx-6">
     <div class="text-center mx-2 my-4">
       <h1>Login</h1>
     </div>
-    <v-app class="px-2 my-3 mx-6">
-      <v-form>
-        <v-text-field
-          label="email"
-          v-model="email"
-        >
-        </v-text-field>
-        <v-text-field
-          :type="'password'"
-          label="password"
-          v-model="password"
-        ></v-text-field>
-        <v-btn
-          @click="pressed"
-        >
-          Sign In
-        </v-btn>
-      </v-form>
-    </v-app>
+    <v-form>
+      <v-text-field
+        label="email"
+        v-model="email"
+      >
+      </v-text-field>
+      <v-text-field
+        :type="'password'"
+        label="password"
+        v-model="password"
+      ></v-text-field>
+      <v-btn
+        @click="pressed"
+      >
+        Sign In
+      </v-btn>
+    </v-form>
   </div>
 </template>
 
