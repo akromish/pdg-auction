@@ -24,24 +24,24 @@
             ></v-text-field>
             <v-textarea
                 label="description"
-                v-model="description"
+                v-model="desc"
                 :rules="inputRules"
                 required
             ></v-textarea>
             <v-text-field
                 type="number"
                 label="price"
-                v-model.number="currentPrice"
+                v-model.number="bidPrice"
                 required
             ></v-text-field>
             <v-text-field
                 label="bidder"
-                v-model="currentBidder"
+                v-model="bidName"
                 required
             ></v-text-field>
             <v-text-field
                 label="phone number"
-                v-model="phoneNumber"
+                v-model="phoneNum"
                 required
             ></v-text-field>
           </v-form>
@@ -54,7 +54,7 @@
           </v-col>
           <v-col class="text-right">
             <v-btn
-                @click="bid(); dialog.value = false"
+                @click="modify(); dialog.value = false"
                 color="#7b1443"
             ><div class="white--text">Confirm Edit</div>
             </v-btn>
@@ -71,20 +71,39 @@ import { db } from '@/db';
 export default {
   name: "PopUp",
   methods: {
-    bid () {
+    modify () {
       if(this.$refs.form.validate()) {
-        db.collection("bids").add({
-          name: this.name,
-          bidPrice: this.bidPrice,
-          phoneNumber: this.phoneNumber,
-          itemName: this.itemName
+        let docId = "";
+        db.collection("bids")
+        .where("name", "==", this.bidName)
+        .where("bidPrice", "==", this.bidPrice)
+        .where("itemName", "==", this.name)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            docId = doc.id
+          });
         })
-        db.collection("items").doc(this.itemName).update({
-          currentPrice: this.bidPrice,
-          currentBidder: this.name,
-          phoneNumber: this.phoneNumber,
+        .then( () => {
+          db.collection("bids").doc(docId).update({
+            name: this.bidName,
+            bidPrice: this.bidPrice,
+            phoneNumber: this.phoneNum,
+            itemName: this.name
+          })
         })
-        this.$emit('changeStuff', 'hmmm');
+        .then( () => {
+          db.collection("items").doc(this.itemName).update({
+            currentPrice: this.bidPrice,
+            currentBidder: this.name,
+            phoneNumber: this.phoneNum,
+            description: this.desc,
+            name: this.name,
+          })
+        })
+        .then( () => {
+          this.$emit('changeStuff', 'hmmm');
+        })
       }
     },
   },
@@ -92,13 +111,16 @@ export default {
     itemName: String,
     currentPrice: Number,
     currentBidder: String,
+    description: String,
+    phoneNumber: String,
   },
   data() {
     return {
-      name: '',
-      phoneNumber: '',
-      bidMin: this.currentPrice + 1,
-      bidPrice: this.bidMin,
+      name: this.itemName,
+      phoneNum: this.phoneNumber,
+      desc: this.description,
+      bidPrice: this.currentPrice,
+      bidName: this.currentBidder,
       inputRules: [
         v => v.length >=3 || 'please enter your full name',
       ],

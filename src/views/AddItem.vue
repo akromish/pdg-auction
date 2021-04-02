@@ -75,7 +75,7 @@ export default {
       description: '',
       currentPrice: 0,
       currentBidder: 'No Bids Yet!',
-      phoneNumber: 0,
+      phoneNumber: '',
       file: '',
       imageUrl: '@/assets/pdg_logo.jpg',
       inputRules: [

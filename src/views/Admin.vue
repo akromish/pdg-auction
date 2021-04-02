@@ -27,6 +27,8 @@
                     v-bind:item-name="item.name"
                     v-bind:current-bidder="item.currentBidder"
                     v-bind:current-price="item.currentPrice"
+                    v-bind:description="item.description"
+                    v-bind:phoneNumber="item.phoneNumber"
                     v-on:changeStuff="updateStuff($event)"
                 />
               </v-col>
@@ -53,6 +55,10 @@ export default {
   methods: {
     add() {
       this.$router.replace({name: 'Add Item'});
+    },
+    // eslint-disable-next-line no-unused-vars
+    updateStuff(updatedStuff) {
+      this.$router.go(0);
     }
   },
   data() {
