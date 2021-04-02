@@ -7,7 +7,7 @@
             <v-responsive class="">
               <v-img
                   height="200"
-                  src="@/assets/temp-img.jpg"
+                  :src="item.imageUrl"
               />
             </v-responsive>
             <v-card-title>
@@ -26,10 +26,10 @@
               </v-col>
               <v-col class="text-right">
                 <PopUp
-                    document-id="123"
                     v-bind:item-name="item.name"
                     v-bind:current-bidder="item.currentBidder"
                     v-bind:current-price="item.currentPrice"
+                    v-on:changeStuff="updateStuff($event)"
                 />
               </v-col>
             </v-card-actions>
@@ -56,6 +56,12 @@ export default {
   data() {
     return {
       items: [],
+    }
+  },
+  methods: {
+    // eslint-disable-next-line no-unused-vars
+    updateStuff(updatedStuff) {
+      this.$router.go(0);
     }
   },
   mounted() {

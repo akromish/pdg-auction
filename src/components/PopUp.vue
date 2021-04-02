@@ -17,8 +17,7 @@
           <h2 class="mt-4">Highest Bid: ${{ currentPrice }}({{ currentBidder }})</h2>
         </v-card-text>
         <v-card-actions>
-          <v-form>
-<!--            need to add some sort of form validation-->
+          <v-form ref="form">
             <v-text-field
                 label="name"
                 v-model="name"
@@ -48,7 +47,7 @@
           </v-col>
           <v-col class="text-right">
             <v-btn
-                @click=bid
+                @click="bid(); dialog.value = false"
             >Submit Bid</v-btn>
           </v-col>
         </v-card-actions>
@@ -64,20 +63,22 @@ export default {
   name: "PopUp",
   methods: {
     bid () {
-      db.collection("bids").add({
-        name: this.name,
-        bidPrice: this.bidPrice,
-        phoneNumber: this.phoneNumber,
-        itemName: this.itemName
-      })
-      db.collection("items").doc(this.itemName).update({
-        currentPrice: this.bidPrice,
-        currentBidder: this.name,
-      })
+      if(this.$refs.form.validate()) {
+        db.collection("bids").add({
+          name: this.name,
+          bidPrice: this.bidPrice,
+          phoneNumber: this.phoneNumber,
+          itemName: this.itemName
+        })
+        db.collection("items").doc(this.itemName).update({
+          currentPrice: this.bidPrice,
+          currentBidder: this.name,
+        })
+        this.$emit('changeStuff', 'hmmm');
+      }
     },
   },
   props: {
-    documentId: String,
     itemName: String,
     currentPrice: Number,
     currentBidder: String,
@@ -96,7 +97,8 @@ export default {
       ],
       phoneRules: [
         v => v.length >=9 || 'please enter your phone number',
-      ]
+      ],
+      valid: true,
     }
   },
 }
