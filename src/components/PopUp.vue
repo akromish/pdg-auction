@@ -66,18 +66,21 @@ export default {
   methods: {
     bid () {
       if(this.$refs.form.validate()) {
+        console.log("what the fleebs");
         db.collection("bids").add({
           name: this.name,
           bidPrice: this.bidPrice,
           phoneNumber: this.phoneNumber,
           itemName: this.itemName
+        }).then( () => {
+          db.collection("items").doc(this.itemName).update({
+            currentPrice: this.bidPrice,
+            currentBidder: this.name,
+            phoneNumber: this.phoneNumber,
+          }).then( () => {
+            this.$emit('changeStuff', 'hmmm');
+          })
         })
-        db.collection("items").doc(this.itemName).update({
-          currentPrice: this.bidPrice,
-          currentBidder: this.name,
-          phoneNumber: this.phoneNumber,
-        })
-        this.$emit('changeStuff', 'hmmm');
       }
     },
   },
