@@ -1,5 +1,5 @@
 <template>
-  <v-dialog transition="dialog-bottom-transition" max-width="600">
+  <v-dialog transition="dialog-bottom-transition" max-width="600" class="text-center">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
           color="#7b1443"
