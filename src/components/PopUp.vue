@@ -66,7 +66,6 @@ export default {
   methods: {
     bid () {
       if(this.$refs.form.validate()) {
-        console.log("what the fleebs");
         db.collection("bids").add({
           name: this.name,
           bidPrice: this.bidPrice,
