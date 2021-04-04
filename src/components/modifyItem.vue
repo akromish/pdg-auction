@@ -72,8 +72,8 @@ export default {
   name: "PopUp",
   methods: {
     modify () {
+      const tempName = this.name;
       if(this.$refs.form.validate()) {
-        let docId = "";
         db.collection("bids")
         .where("name", "==", this.bidName)
         .where("bidPrice", "==", this.bidPrice)
@@ -81,11 +81,11 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            docId = doc.id
+            this.docId = doc.id
           });
         })
         .then( () => {
-          db.collection("bids").doc(docId).update({
+          db.collection("bids").doc(this.docId).update({
             name: this.bidName,
             bidPrice: this.bidPrice,
             phoneNumber: this.phoneNum,
@@ -93,7 +93,7 @@ export default {
           })
         })
         .then( () => {
-          db.collection("items").doc(this.itemName).update({
+          db.collection("items").doc(tempName).update({
             currentPrice: this.bidPrice,
             currentBidder: this.name,
             phoneNumber: this.phoneNum,
@@ -121,6 +121,7 @@ export default {
       desc: this.description,
       bidPrice: this.currentPrice,
       bidName: this.currentBidder,
+      docId: '',
       inputRules: [
         v => v.length >=3 || 'please enter your full name',
       ],
