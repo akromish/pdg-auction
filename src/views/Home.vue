@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <div class="text-center"><h1>Thanks for bidding! Live auction has now ended!</h1></div>
     <v-container class="my-5">
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="item in items" :key="item.name">
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-// import { db } from '@/db';
+import { db } from '@/db';
 import PopUp from "@/components/PopUp";
 
 export default {
@@ -66,11 +65,11 @@ export default {
     }
   },
   mounted() {
-    //db.collection("items").orderBy("name").get().then((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     this.items.push(doc.data());
-    //   });
-    // });
+    db.collection("items").orderBy("name").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.items.push(doc.data());
+      });
+    });
   }
 }
 </script>
