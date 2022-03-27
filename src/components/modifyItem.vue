@@ -28,22 +28,6 @@
                 :rules="inputRules"
                 required
             ></v-textarea>
-            <v-text-field
-                type="number"
-                label="price"
-                v-model.number="bidPrice"
-                required
-            ></v-text-field>
-            <v-text-field
-                label="bidder"
-                v-model="bidName"
-                required
-            ></v-text-field>
-            <v-text-field
-                label="phone number"
-                v-model="phoneNum"
-                required
-            ></v-text-field>
           </v-form>
         </v-card-actions>
         <v-card-actions>
@@ -75,8 +59,6 @@ export default {
       const tempName = this.name;
       if(this.$refs.form.validate()) {
         db.collection("bids")
-        .where("name", "==", this.bidName)
-        .where("bidPrice", "==", this.bidPrice)
         .where("itemName", "==", this.name)
         .get()
         .then((querySnapshot) => {
@@ -85,18 +67,14 @@ export default {
           });
         })
         .then( () => {
-          db.collection("bids").doc(this.docId).update({
-            name: this.bidName,
-            bidPrice: this.bidPrice,
-            phoneNumber: this.phoneNum,
-            itemName: this.name
-          })
+          this.docIds.forEach((docId) => (
+              db.collection("bids").doc(docId).update({
+                itemName: this.name
+              }))
+          )
         })
         .then( () => {
           db.collection("items").doc(tempName).update({
-            currentPrice: this.bidPrice,
-            currentBidder: this.name,
-            phoneNumber: this.phoneNum,
             description: this.desc,
             name: this.name,
           })
@@ -117,19 +95,10 @@ export default {
   data() {
     return {
       name: this.itemName,
-      phoneNum: this.phoneNumber,
       desc: this.description,
-      bidPrice: this.currentPrice,
-      bidName: this.currentBidder,
-      docId: '',
+      docIds: [],
       inputRules: [
         v => v.length >=3 || 'please enter your full name',
-      ],
-      bidRules: [
-        v => v >= this.bidMin || `minimum bid: $${this.bidMin}`,
-      ],
-      phoneRules: [
-        v => v.length >=9 || 'please enter your phone number',
       ],
       valid: true,
     }

@@ -14,7 +14,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/admin9',
+    path: '/admin/a7aba987-75eb-4924-ac49-a6ea549321dc',
     name: 'Admin',
     component: Admin
   },

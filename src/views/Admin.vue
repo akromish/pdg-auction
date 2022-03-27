@@ -18,21 +18,21 @@
 
               </v-col>
             </v-card-text>
-            <v-card-actions>
-              <v-col class="text-left">
-                <v-btn color="#FF0000" class="white--text">Delete</v-btn>
-              </v-col>
-              <v-col class="text-right">
-                <modifyItem
-                    v-bind:item-name="item.name"
-                    v-bind:current-bidder="item.currentBidder"
-                    v-bind:current-price="item.currentPrice"
-                    v-bind:description="item.description"
-                    v-bind:phoneNumber="item.phoneNumber"
-                    v-on:changeStuff="updateStuff($event)"
-                />
-              </v-col>
-            </v-card-actions>
+<!--            <v-card-actions>-->
+<!--              <v-col class="text-left">-->
+<!--                <v-btn color="#FF0000" class="white&#45;&#45;text">Delete</v-btn>-->
+<!--              </v-col>-->
+<!--              <v-col class="text-right">-->
+<!--                <modifyItem-->
+<!--                    v-bind:item-name="item.name"-->
+<!--                    v-bind:current-bidder="item.currentBidder"-->
+<!--                    v-bind:current-price="item.currentPrice"-->
+<!--                    v-bind:description="item.description"-->
+<!--                    v-bind:phoneNumber="item.phoneNumber"-->
+<!--                    v-on:changeStuff="updateStuff($event)"-->
+<!--                />-->
+<!--              </v-col>-->
+<!--            </v-card-actions>-->
           </v-card>
         </v-flex>
       </v-layout>
@@ -44,13 +44,13 @@
 
 <script>
 import {db} from "@/db";
-import modifyItem from "@/components/modifyItem";
+// import modifyItem from "@/components/modifyItem";
 
 export default {
   name: "Admin",
-  title: "Shumail's Page",
+  title: "Admin Page",
   components: {
-    modifyItem,
+    // modifyItem,
   },
   methods: {
     add() {

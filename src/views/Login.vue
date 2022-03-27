@@ -3,23 +3,31 @@
     <div class="text-center mx-2 my-4">
       <h1>Login</h1>
     </div>
-    <v-form>
-      <v-text-field
-        label="email"
-        v-model="email"
-      >
-      </v-text-field>
-      <v-text-field
-        :type="'password'"
-        label="password"
-        v-model="password"
-      ></v-text-field>
-      <v-btn
-        @click="pressed"
-      >
-        Sign In
-      </v-btn>
-    </v-form>
+    <v-layout row wrap>
+      <div class="d-flex justify-center flex align-center">
+        <v-flex xs12 sm6 md4 lg3>
+          <v-card color="#fffff2">
+            <v-form>
+              <v-text-field
+                label="email"
+                v-model="email"
+              >
+              </v-text-field>
+              <v-text-field
+                :type="'password'"
+                label="password"
+                v-model="password"
+              ></v-text-field>
+              <v-btn
+                @click="pressed"
+              >
+                Sign In
+              </v-btn>
+            </v-form>
+          </v-card>
+        </v-flex>
+      </div>
+    </v-layout>
   </div>
 </template>
 
@@ -35,7 +43,7 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
+            console.log(`is anonymous: ${user.isAnonymous}`);
             this.$router.replace({name: 'Admin'});
           })
           .catch((error) => {

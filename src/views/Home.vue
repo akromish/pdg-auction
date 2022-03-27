@@ -1,9 +1,13 @@
 <template>
   <div>
-    <v-row elevation="0" class="d-flex align-center justify-center mx-12">
-      <v-text-field elevation="0" v-model="searchText" background-color="#fffff2" placeholder="search for item" v-bind:style="{ 'border-radius': '5px' }"/>
-    </v-row>
     <v-container class="my-5">
+      <v-layout row wrap>
+        <div class="d-flex justify-center flex align-center">
+          <v-flex xs10 sm6 md4 lg3>
+            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
+          </v-flex>
+        </div>
+      </v-layout>
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.name">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
