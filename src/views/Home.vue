@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card elevation="0" max-width="100" text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
-      <input v-model="searchText" placeholder="search for item">
-    </v-card>
+    <v-row elevation="0" class="d-flex align-center justify-center mx-12">
+      <v-text-field elevation="0" v-model="searchText" background-color="#fffff2" placeholder="search for item" v-bind:style="{ 'border-radius': '5px' }"/>
+    </v-row>
     <v-container class="my-5">
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.name">
@@ -79,7 +79,7 @@ export default {
     filteredItems() {
       if (this.searchText !== '') {
         return this.items.filter((item) => {
-          return item.name.match(this.searchText);
+          return item.name.toLowerCase().match(this.searchText.toLowerCase());
         });
       }
       return this.items;

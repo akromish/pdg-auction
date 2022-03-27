@@ -27,7 +27,7 @@
     >
       <router-view />
     </v-main>
-    <h6 class="text-center font-weight-light ma-4">© 2021 Project Downtown Gainesville</h6>
+    <h6 class="text-center font-weight-light ma-4">© 2021-22 Project Downtown Gainesville</h6>
   </v-app>
 </template>
 
