@@ -1,8 +1,11 @@
 <template>
-  <div class="home">
+  <div>
+    <v-card elevation="0" max-width="100" text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
+      <input v-model="searchText" placeholder="search for item">
+    </v-card>
     <v-container class="my-5">
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg3 v-for="item in items" :key="item.name">
+        <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.name">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
             <v-responsive class="">
               <v-img
@@ -56,6 +59,7 @@ export default {
   data() {
     return {
       items: [],
+      searchText: '',
     }
   },
   methods: {
@@ -70,6 +74,16 @@ export default {
         this.items.push(doc.data());
       });
     });
+  },
+  computed: {
+    filteredItems() {
+      if (this.searchText !== '') {
+        return this.items.filter((item) => {
+          return item.name.match(this.searchText);
+        });
+      }
+      return this.items;
+    }
   }
 }
 </script>
