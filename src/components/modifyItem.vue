@@ -18,13 +18,19 @@
           <v-form ref="form">
             <v-text-field
                 label="name"
-                v-model="name"
+                v-model="updatedName"
+                :rules="inputRules"
+                required
+            ></v-text-field>
+            <v-text-field
+                label="number"
+                v-model="updatedNumber"
                 :rules="inputRules"
                 required
             ></v-text-field>
             <v-textarea
                 label="description"
-                v-model="desc"
+                v-model="updatedDescription"
                 :rules="inputRules"
                 required
             ></v-textarea>
@@ -56,29 +62,12 @@ export default {
   name: "PopUp",
   methods: {
     modify () {
-      const tempName = this.name;
       if(this.$refs.form.validate()) {
-        db.collection("bids")
-        .where("itemName", "==", this.name)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.docId = doc.id
-          });
-        })
-        .then( () => {
-          this.docIds.forEach((docId) => (
-              db.collection("bids").doc(docId).update({
-                itemName: this.name
-              }))
-          )
-        })
-        .then( () => {
-          db.collection("items").doc(tempName).update({
-            description: this.desc,
-            name: this.name,
+          db.collection("items").doc(this.itemId).update({
+            name: this.updatedName,
+            itemNumber: this.updatedNumber,
+            description: this.updatedDescription,
           })
-        })
         .then( () => {
           this.$emit('changeStuff', 'hmmm');
         })
@@ -87,6 +76,8 @@ export default {
   },
   props: {
     itemName: String,
+    itemNumber: Number,
+    itemId: String,
     currentPrice: Number,
     currentBidder: String,
     description: String,
@@ -94,11 +85,12 @@ export default {
   },
   data() {
     return {
-      name: this.itemName,
-      desc: this.description,
+      updatedName: this.itemName,
+      updatedNumber: this.itemNumber,
+      updatedDescription: this.description,
       docIds: [],
       inputRules: [
-        v => v.length >=3 || 'please enter your full name',
+        // v => v.length >=3 || 'please enter your full name',
       ],
       valid: true,
     }

@@ -82,7 +82,8 @@ export default {
         });
       });
     })
-    .then(this.items.sort((a, b) => (a.data.itemNumber) - (b.data.itemNumber))); // this no work lol
+    .then(this.items.sort((a, b) => (a.data.itemNumber) - (b.data.itemNumber))); // TODO: fix lol
+
   },
   computed: {
     filteredItems() {

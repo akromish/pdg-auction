@@ -11,7 +11,5 @@ C
 package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 9
 	src/db.js,a\3\a3b12e14268405ee1f00e3fe93ac0c32342ddd10
-M
-src/components/modifyItem.vue,a\5\a587a2dc69f33560595850822d36b4dcc9333642
 C
 src/views/Login.vue,0\e\0ed8539d802d4dd5b71b633944b91bb204de342c
