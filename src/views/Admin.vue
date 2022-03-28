@@ -19,7 +19,7 @@
             </v-card-text>
             <v-card-actions>
               <v-col class="text-left">
-                <v-btn color="#FF0000" class="white--text" @click="deleteItem(this.item.itemId)">Delete</v-btn>
+                <v-btn color="#FF0000" class="white--text" @click="deleteItem(item.id)">Delete</v-btn>
               </v-col>
               <v-col class="text-right">
                 <modifyItem
@@ -63,7 +63,6 @@ export default {
       this.$router.go(0);
     },
     deleteItem(itemId) {
-      // TODO: fix lol
       db.collection("items")
           .where(firebase.firestore.FieldPath.documentId(), "==", itemId)
           .get()
