@@ -70,9 +70,9 @@ export default {
           name: this.name,
           bidPrice: this.bidPrice,
           phoneNumber: this.phoneNumber,
-          itemName: this.itemName
+          itemId: this.itemId
         }).then( () => {
-          db.collection("items").doc(this.itemName).update({
+          db.collection("items").doc(this.itemId).update({
             currentPrice: this.bidPrice,
             currentBidder: this.name,
             phoneNumber: this.phoneNumber,
@@ -85,6 +85,7 @@ export default {
   },
   props: {
     itemName: String,
+    itemId: String,
     currentPrice: Number,
     currentBidder: String,
   },

@@ -11,6 +11,12 @@
           :rules="inputRules"
           required
         ></v-text-field>
+        <v-text-field
+            type="number"
+            label="item number"
+            v-model.number="itemNumber"
+            required
+        ></v-text-field>
         <v-textarea
             label="description"
             v-model="description"
@@ -52,8 +58,9 @@ export default {
           starsRef.getDownloadURL()
               .then((url) => {
                 this.imageUrl = url;
-                db.collection("items").doc(this.name).set({
+                db.collection("items").add({
                   name: this.name,
+                  itemNumber: this.itemNumber,
                   description: this.description,
                   currentPrice: this.currentPrice,
                   currentBidder: this.currentBidder,
@@ -72,6 +79,7 @@ export default {
   data() {
     return {
       name: '',
+      itemNumber: 0,
       description: '',
       currentPrice: 0,
       currentBidder: 'No Bids Yet!',

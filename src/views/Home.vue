@@ -14,11 +14,11 @@
             <v-responsive class="">
               <v-img
                   height="200"
-                  :src="item.imageUrl"
+                  :src="item.data.imageUrl"
               />
             </v-responsive>
             <v-card-title>
-              <div>{{ item.name }}</div>
+              <div>{{ item.data.name }}, {{ item.data.itemNumber }}</div>
             </v-card-title>
             <v-card-text class="justify-center">
               <div class="mb-2 mt-1 subtitle-1">{{ item.description }}</div>
@@ -26,16 +26,17 @@
             </v-card-text>
             <v-card-actions>
               <v-col>
-                <div>{{ item.currentBidder }}</div>
+                <div>{{ item.data.currentBidder }}</div>
               </v-col>
               <v-col>
-                <div class="font-weight-bold">${{ item.currentPrice }}</div>
+                <div class="font-weight-bold">${{ item.data.currentPrice }}</div>
               </v-col>
               <v-col class="text-right">
                 <PopUp
-                    v-bind:item-name="item.name"
-                    v-bind:current-bidder="item.currentBidder"
-                    v-bind:current-price="item.currentPrice"
+                    v-bind:item-name="item.data.name"
+                    v-bind:current-bidder="item.data.currentBidder"
+                    v-bind:current-price="item.data.currentPrice"
+                    v-bind:item-id="item.id"
                     v-on:changeStuff="updateStuff($event)"
                 />
               </v-col>
@@ -75,16 +76,24 @@ export default {
   mounted() {
     db.collection("items").orderBy("name").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        this.items.push(doc.data());
+        this.items.push({
+          data: doc.data(),
+          id: doc.id
+        });
       });
-    });
+    })
+    .then(this.items.sort((a, b) => (a.data.itemNumber) - (b.data.itemNumber))); // this no work lol
   },
   computed: {
     filteredItems() {
       if (this.searchText !== '') {
-        return this.items.filter((item) => {
-          return item.name.toLowerCase().match(this.searchText.toLowerCase());
+        const nameFilter = this.items.filter((item) => {
+            return item.data.name.toLowerCase().match(this.searchText.toLowerCase());
         });
+        const idFilter = this.items.filter((item) => {
+          return item.data.itemNumber.toString().match(this.searchText);
+        });
+        return [ ...new Set([ ...(nameFilter || []), ...(idFilter || []) ])];
       }
       return this.items;
     }
