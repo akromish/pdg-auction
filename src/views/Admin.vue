@@ -8,7 +8,7 @@
         <v-flex xs12 sm6 md4 lg3 v-for="item in items" :key="item.name">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
             <v-card-title>
-              <div>{{ item.name }}</div>
+              <div>{{ item.itemNumber }}, {{ item.name }}</div>
             </v-card-title>
             <v-card-text>
               <v-col>

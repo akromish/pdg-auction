@@ -14,6 +14,4 @@ C
 M
 src/components/modifyItem.vue,a\5\a587a2dc69f33560595850822d36b4dcc9333642
 C
-src/views/Admin.vue,e\2\e28d813ed44391a17ca48ceabb6a90404f4dde35
-C
 src/views/Login.vue,0\e\0ed8539d802d4dd5b71b633944b91bb204de342c

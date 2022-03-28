@@ -18,7 +18,7 @@
               />
             </v-responsive>
             <v-card-title>
-              <div>{{ item.data.name }}, {{ item.data.itemNumber }}</div>
+              <div>{{ item.data.itemNumber }}, {{ item.data.name }}</div>
             </v-card-title>
             <v-card-text class="justify-center">
               <div class="mb-2 mt-1 subtitle-1">{{ item.description }}</div>
