@@ -79,7 +79,7 @@ export default {
     }
   },
   mounted() {
-    db.collection("items").orderBy("name").get().then((querySnapshot) => {
+    db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.items.push({
           data: doc.data(),

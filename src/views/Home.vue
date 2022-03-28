@@ -9,7 +9,7 @@
         </div>
       </v-layout>
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.name">
+        <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.id">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
             <v-responsive class="">
               <v-img
@@ -74,16 +74,14 @@ export default {
     }
   },
   mounted() {
-    db.collection("items").orderBy("name").get().then((querySnapshot) => {
+    db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.items.push({
           data: doc.data(),
           id: doc.id
         });
       });
-    })
-    .then(this.items.sort((a, b) => (a.data.itemNumber) - (b.data.itemNumber))); // TODO: fix lol
-
+    });
   },
   computed: {
     filteredItems() {

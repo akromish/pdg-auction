@@ -24,6 +24,7 @@
             ></v-text-field>
             <v-text-field
                 label="number"
+                type="number"
                 v-model="updatedNumber"
                 :rules="inputRules"
                 required
@@ -65,7 +66,7 @@ export default {
       if(this.$refs.form.validate()) {
           db.collection("items").doc(this.itemId).update({
             name: this.updatedName,
-            itemNumber: this.updatedNumber,
+            itemNumber: parseInt(this.updatedNumber),
             description: this.updatedDescription,
           })
         .then( () => {
