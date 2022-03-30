@@ -21,7 +21,7 @@
               <div>#{{ item.data.itemNumber }}: {{ item.data.name }}</div>
             </v-card-title>
             <v-card-text class="justify-center">
-              <div class="mb-2 mt-1 subtitle-1">{{ item.description }}</div>
+              <div class="mb-2 mt-1 subtitle-1">{{ item.data.description }}</div>
               <v-divider class="mt-6"></v-divider>
             </v-card-text>
             <v-card-actions>
