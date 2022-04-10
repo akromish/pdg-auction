@@ -5,7 +5,7 @@
       <v-layout row wrap>
         <div class="d-flex justify-center flex align-center">
           <v-flex xs10 sm6 md4 lg3>
-            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
+<!--            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>-->
           </v-flex>
         </div>
       </v-layout>
