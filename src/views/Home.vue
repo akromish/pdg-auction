@@ -1,10 +1,11 @@
 <template>
   <div>
+    <div class="text-center"><h1>Thanks for bidding! The silent auction has now ended!</h1></div>
     <v-container class="my-5">
       <v-layout row wrap>
         <div class="d-flex justify-center flex align-center">
           <v-flex xs10 sm6 md4 lg3>
-            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
+            <!-- <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/> -->
           </v-flex>
         </div>
       </v-layout>
@@ -52,7 +53,7 @@
 </template>
 
 <script>
-import { db } from '@/db';
+// import { db } from '@/db';
 import PopUp from "@/components/PopUp";
 
 export default {
@@ -74,14 +75,14 @@ export default {
     }
   },
   mounted() {
-    db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.items.push({
-          data: doc.data(),
-          id: doc.id
-        });
-      });
-    });
+    // db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     this.items.push({
+    //       data: doc.data(),
+    //       id: doc.id
+    //     });
+    //   });
+    // });
   },
   computed: {
     filteredItems() {
