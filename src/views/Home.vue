@@ -75,14 +75,14 @@ export default {
     }
   },
   mounted() {
-    // db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     this.items.push({
-    //       data: doc.data(),
-    //       id: doc.id
-    //     });
-    //   });
-    // });
+    db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.items.push({
+          data: doc.data(),
+          id: doc.id
+        });
+      });
+    });
   },
   computed: {
     filteredItems() {
