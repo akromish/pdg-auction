@@ -30,7 +30,9 @@
             required
         ></v-text-field>
         <label>
-          <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+          <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept=".jpg,.jpeg,.png"/>
+          <br/>
+          <span>Only JPEG and PNG files are allowed</span>
         </label>
         <div class="text-center mt-12 mb-4">
           <v-btn @click="pressed">Add Item</v-btn>
