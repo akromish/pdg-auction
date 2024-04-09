@@ -53,7 +53,8 @@ export default {
   methods: {
     pressed(){
       if(this.$refs.form.validate()) {
-        const imgPath = `images/${this.file.name}`;
+        const img_id = URL.createObjectURL(new Blob([])).slice(-36);
+        const imgPath = `images/${img_id}-${this.file.name}`;
         const storageRef = firebase.storage().ref();
         storageRef.child(imgPath).put(this.file).then(() => {
           const starsRef = storageRef.child(imgPath);
