@@ -13,9 +13,10 @@
         <v-flex xs12 sm6 md4 lg3 v-for="item in filteredItems" :key="item.id">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
             <v-responsive class="">
-              <v-img
+              <v-lazy-image
                   height="200"
                   :src="item.data.imageUrl"
+                  style="width: 100%;"
               />
             </v-responsive>
             <v-card-title>
@@ -55,12 +56,14 @@
 <script>
 import { db } from '@/db';
 import PopUp from "@/components/PopUp";
+import VLazyImage from "v-lazy-image/v2";
 
 export default {
   name: 'Home',
   title: 'PDG Silent Auction',
   components: {
     PopUp,
+    VLazyImage
   },
   data() {
     return {

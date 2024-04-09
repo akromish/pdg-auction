@@ -8,9 +8,10 @@
         <v-flex xs12 sm4 md3 lg2 v-for="item in items" :key="item.name">
           <v-card text class="my-3 mx-4 justify-center rounded-md" color="#fffff2">
             <v-responsive class="">
-              <v-img
+              <v-lazy-image
                   height="150"
                   :src="item.data.imageUrl"
+                  style="width: 100%;"
               />
             </v-responsive>
             <v-card-title>
@@ -65,12 +66,14 @@
 <script>
 import {db} from "@/db";
 import modifyItem from "@/components/modifyItem";
+import VLazyImage from "v-lazy-image/v2";
 
 export default {
   name: "Admin",
   title: "Admin Page",
   components: {
     modifyItem,
+    VLazyImage
   },
   methods: {
     add() {
