@@ -35,7 +35,7 @@
           <span>Only JPEG and PNG files are allowed</span>
         </label>
         <div class="text-center mt-12 mb-4">
-          <v-btn @click="pressed">Add Item</v-btn>
+          <v-btn @click="pressed" :disabled="isButtonDisabled">Add Item</v-btn>
         </div>
       </v-form>
     </div>
@@ -53,6 +53,7 @@ export default {
   methods: {
     pressed(){
       if(this.$refs.form.validate()) {
+        this.isButtonDisabled = true;
         const img_id = URL.createObjectURL(new Blob([])).slice(-36);
         const imgPath = `images/${img_id}-${this.file.name}`;
         const storageRef = firebase.storage().ref();
@@ -71,8 +72,12 @@ export default {
                   imageUrl: this.imageUrl,
                 })
               })
-        })
-        this.$router.replace({name: 'Admin'});
+              .then(() => {
+                setTimeout(() => {
+                  this.$router.replace({ name: 'Admin' });
+                  }, 1000);
+                })
+              })
       }
     },
     handleFileUpload(){
@@ -91,7 +96,8 @@ export default {
       imageUrl: '@/assets/pdg_logo.jpg',
       inputRules: [
           v => v.length >=2 || 'please enter a name for the item'
-      ]
+      ],
+      isButtonDisabled: false
     }
   }
 }
