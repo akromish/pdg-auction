@@ -53,7 +53,7 @@
 </template>
 
 <script>
-// import { db } from '@/db';
+import { db } from '@/db';
 import PopUp from "@/components/PopUp";
 
 export default {
