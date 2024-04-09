@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="text-center"><h1>Thanks for bidding! The silent auction has now ended!</h1></div>
+    <!-- <div class="text-center"><h1>Thanks for bidding! The silent auction has now ended!</h1></div> -->
     <v-container class="my-5">
       <v-layout row wrap>
         <div class="d-flex justify-center flex align-center">
           <v-flex xs10 sm6 md4 lg3>
-            <!-- <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/> -->
+            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
           </v-flex>
         </div>
       </v-layout>
