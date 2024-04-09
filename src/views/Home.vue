@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- <div class="text-center"><h1>Thanks for bidding! The silent auction has now ended!</h1></div> -->
+    <div v-if="!isLive" class="text-center" style="margin-top: 14px;"><h1>Thanks for bidding! The silent auction has now ended!</h1></div>
     <v-container class="my-5">
       <v-layout row wrap>
         <div class="d-flex justify-center flex align-center">
           <v-flex xs10 sm6 md4 lg3>
-            <v-text-field v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
+            <v-text-field v-if="isLive" v-model="searchText" background-color="#fffff2" rounded placeholder="search for item"/>
           </v-flex>
         </div>
       </v-layout>
@@ -69,6 +69,7 @@ export default {
     return {
       items: [],
       searchText: '',
+      isLive: true
     }
   },
   methods: {
@@ -78,14 +79,21 @@ export default {
     }
   },
   mounted() {
-    db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.items.push({
-          data: doc.data(),
-          id: doc.id
-        });
-      });
-    });
+    const RUNNING_FLAG_ID = "Yj95OpMYzMfHJcVm3E0X"
+      db.collection("auction_running").doc(RUNNING_FLAG_ID).get().then((row)=>{
+        this.isLive = row.data()["is_live"]
+      }).then(() => {
+        if (this.isLive) {
+          db.collection("items").orderBy("itemNumber").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              this.items.push({
+                data: doc.data(),
+                id: doc.id
+              });
+            });
+          });
+        }
+      })
   },
   computed: {
     filteredItems() {
