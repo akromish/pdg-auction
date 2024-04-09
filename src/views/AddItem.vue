@@ -20,8 +20,7 @@
         <v-textarea
             label="description"
             v-model="description"
-            :rules="inputRules"
-            required
+            :rules="descriptionRules"
         ></v-textarea>
         <v-text-field
             type="number"
@@ -97,6 +96,7 @@ export default {
       inputRules: [
           v => v.length >=2 || 'please enter a name for the item'
       ],
+      descriptionRules: [],
       isButtonDisabled: false
     }
   }
