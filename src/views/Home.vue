@@ -19,10 +19,10 @@
                   style="width: 100%;"
               />
             </v-responsive>
-            <v-card-title>
+            <v-card-title  class="title">
               <div>#{{ item.data.itemNumber }}: {{ item.data.name }}</div>
             </v-card-title>
-            <v-card-text class="justify-center">
+            <v-card-text class="justify-center description">
               <div class="mb-2 mt-1 subtitle-1">{{ item.data.description }}</div>
               <v-divider class="mt-6"></v-divider>
             </v-card-text>
@@ -105,4 +105,15 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  word-break: keep-all; 
+  white-space: pre-wrap;
+  max-width: 100%;
+}
+
+.description {
+  word-break: keep-all; 
+  white-space: pre-wrap;
+  max-width: 100%;
+}
 </style>
